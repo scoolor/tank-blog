@@ -1,5 +1,16 @@
 {
     "require": {
+        "php": ">7.0",
         "erusev/parsedown": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests/"
+        }
     }
 }
