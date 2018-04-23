@@ -30,7 +30,11 @@ class BaseController
 
         $content = $this->renderPhpFile($viewPath, $params);
 
-        return $content;
+        $layoutPath = Kernel::$rootPath.'app/views/layout/index.php';
+
+        $finalContent = $this->renderPhpFile($layoutPath, ['content' => $content]);
+
+        return $finalContent;
     }
 
     public function renderPhpFile($filePath, $params = [])

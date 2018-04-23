@@ -12,7 +12,8 @@ class UserController extends BaseController
 {
     public function actionCreate()
     {
-        return $this->redirect(['user', 'store'], ['message' => 'heel']);
+
+        return $this->view('create', ['message' => 'heel']);
     }
 
     public function actionStore()
