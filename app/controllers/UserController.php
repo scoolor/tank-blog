@@ -8,16 +8,24 @@
 namespace app\controllers;
 
 
+use App\kernel\Kernel;
+
 class UserController extends BaseController
 {
     public function actionCreate()
     {
 
-        return $this->view('create', ['message' => 'heel']);
+        $Parsedown = new \Parsedown();
+
+        $content = $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p>
+        return $this->view('create', ['content' => $content]);
     }
 
     public function actionStore()
     {
-        echo 'abc';
+        $request = Kernel::$app->getRequest();
+        echo '<pre>';
+
+        var_dump($request->getPostData());exit;
     }
 }

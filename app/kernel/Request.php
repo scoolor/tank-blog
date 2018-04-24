@@ -12,6 +12,8 @@ class Request
 {
     private $queryParams = null;
 
+    private $postData = [];
+
     public $routeMark = 'r';
 
     public function requestUri()
@@ -62,5 +64,13 @@ class Request
             $routeParams = [];
         }
         return $routeParams;
+    }
+
+    public function getPostData()
+    {
+        if (empty($this->postData)) {
+            $this->postData = $_POST;
+        }
+        return $this->postData;
     }
 }

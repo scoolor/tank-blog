@@ -7,9 +7,12 @@
 use App\kernel\Kernel;
 
 $action = Kernel::$app->generateUrl(['user', 'store']);
+
+echo $content;
 ?>
 
-<form action="<?echo $action;?>" method="post">
-    <input type="text" name="aaa">
-    <input type="submit" value="submit">
-</form>
+
+<!--<form action="--><?//echo $action;?><!--" method="post">-->
+<!--    <input type="text" name="aaa">-->
+<!--    <input type="submit" value="submit">-->
+<!--</form>-->
