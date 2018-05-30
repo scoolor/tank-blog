@@ -1,8 +1,10 @@
 <?php
 
+use engine\EngineZero;
+
 require_once __DIR__.'/../vendor/autoload.php';
 
-$kernel = new \app\kernel\Application();
+$engine = EngineZero::instance();
 
-$kernel->run();
+$object = $engine->generateObject();
 

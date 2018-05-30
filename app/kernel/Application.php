@@ -26,6 +26,7 @@ class Application
     {
         try {
             $request = $this->getRequest();
+
             $response = $this->getResponse();
 
             $route = $request->getRouteParams();
