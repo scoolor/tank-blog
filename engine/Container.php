@@ -11,13 +11,7 @@ namespace engine;
 class Container extends BaseObject
 {
     //注册配置
-    public function register()
-    {
-
-    }
-
-    //移除配置
-    public function remove()
+    public function set()
     {
 
     }
@@ -25,6 +19,6 @@ class Container extends BaseObject
     //生成对象
     public function get()
     {
-
+        return null;
     }
 }

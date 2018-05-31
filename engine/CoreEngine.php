@@ -13,25 +13,58 @@ class CoreEngine extends BaseObject
 {
     private $container = null;
 
-    private static $instance = null;
+    private $aliasMap = [];
+    public $aliasFlag = '@';
 
-    private function __construct(Configure $config = null)
+    public function registerAlias(array $alias)
     {
+        foreach ($alias as $key => $path) {
+            if (!is_string($key) || !is_string($path)) {
+                continue;
+            }
 
-    }
+            if (strpos($key, $this->aliasFlag) !== 0) {
+                continue;
+            }
 
-    private function __clone()
-    {
-        return self::$instance;
-    }
+            if (strpos($path, $this->aliasFlag) === 0) {
+                $path = $this->parseAlias($path);
+            }
 
-    public static function instance(Configure $config = null)
-    {
-        if (is_null(self::$instance)) {
-            self::$instance = new self($config);
+            if ($path === false) {
+                continue;
+            }
+
+            $aliaFragments = explode('/', $key);
+
+            $currentMap = $this->aliasMap;
         }
+    }
 
-        return self::$instance;
+    public function parseAlias($aliasKey)
+    {
+        return false;
+    }
+
+
+    protected function _autoload($className)
+    {
+        $classFile = $className;
+
+        if (strpos($className, '\\') !== false) {
+            $classFile = $this->parseAlias($this->aliasFlag.str_replace('\\', '/', $className));
+
+            if ($classFile === false || !is_file($classFile)) {
+                return;
+            }
+
+        }
+        include($classFile);
+    }
+
+    public function setContainer(Container $container)
+    {
+        $this->container = $container;
     }
 
     public function getContainer() : Container
@@ -39,20 +72,8 @@ class CoreEngine extends BaseObject
         return $this->container;
     }
 
-    public function get($typeName)
+    public function generateObject($typeName)
     {
-        $this->getContainer()->get($typeName);
-    }
-
-    public function generateObject()
-    {
-
-    }
-
-    public function coreConfigure()
-    {
-        return [
-            'container' => '\engine\Container'
-        ];
+        return $this->getContainer()->get($typeName);
     }
 }
