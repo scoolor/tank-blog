@@ -1,15 +1,11 @@
 <?php
 
-use engine\Configure;
-use engine\EngineZero;
+include_once dirname(__DIR__).'/config/bootstrap.php';
 
-require_once __DIR__.'/../vendor/autoload.php';
+$config = require_once dirname(__DIR__).'/config/web/app.php';
 
-$config = [];
-
-$configure = new Configure($config);
-
-$engine = EngineZero::instance($configure);
+$engine = \engine\EngineZero::instance();
+$engine->loadConfigure($config);
 
 $application = $engine->generateObject('app');
 

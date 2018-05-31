@@ -7,7 +7,7 @@ namespace engine;
  * Time: 上午11:10
  */
 
-
+define('PROJECT_ROOT', __DIR__);
 
 class CoreEngine extends BaseObject
 {
@@ -22,7 +22,8 @@ class CoreEngine extends BaseObject
             if (!is_string($key) || !is_string($path)) {
                 continue;
             }
-
+            $key = trim($key, '/');
+            $path = rtrim($path, '/');
             if (strpos($key, $this->aliasFlag) !== 0) {
                 continue;
             }
@@ -35,15 +36,55 @@ class CoreEngine extends BaseObject
                 continue;
             }
 
-            $aliaFragments = explode('/', $key);
+            $pos = strpos($key, '/');
+            if ($pos === false) {
+                $aliasRoot = $key;
+            } else {
+                $aliasRoot = substr($key, 0, $pos);
+            }
 
-            $currentMap = $this->aliasMap;
+            if (isset($this->aliasMap[$aliasRoot])) {
+                if (isset($this->aliasMap[$aliasRoot][$key])) {
+                    $this->aliasMap[$aliasRoot][$key] = $path;
+                } else {
+                    array_push($this->aliasMap[$aliasRoot], [
+                        $key => $path
+                    ]);
+                    krsort($this->aliasMap[$aliasRoot]);
+                }
+            } else {
+                $this->aliasMap[$aliasRoot] = [
+                    $key => $path
+                ];
+            }
         }
     }
 
-    public function parseAlias($aliasKey)
+    public function parseAlias(string $aliasKey)
     {
+        trim($aliasKey, '/');
+        if (strpos($aliasKey, $this->aliasFlag) !== 0) {
+            return false;
+        }
+
+        $pos = strpos($aliasKey, '/');
+        if ($pos === false) {
+            $aliasRoot = $aliasKey;
+        } else {
+            $aliasRoot = substr($aliasKey, 0, $pos);
+        }
+
+        if (!isset($this->aliasMap[$aliasRoot])) {
+            return false;
+        }
+
+        foreach ($this->aliasMap[$aliasRoot] as $key => $path) {
+            if (strpos($aliasKey.'/', $key.'/') === 0) {
+                return $path.'/'.substr($aliasKey, strlen($aliasRoot));
+            }
+        }
         return false;
+
     }
 
 
@@ -52,7 +93,8 @@ class CoreEngine extends BaseObject
         $classFile = $className;
 
         if (strpos($className, '\\') !== false) {
-            $classFile = $this->parseAlias($this->aliasFlag.str_replace('\\', '/', $className));
+
+            $classFile = $this->parseAlias($this->aliasFlag.str_replace('\\', '/', $className).'.php');
 
             if ($classFile === false || !is_file($classFile)) {
                 return;
@@ -60,6 +102,10 @@ class CoreEngine extends BaseObject
 
         }
         include($classFile);
+    }
+
+    public function loadConfigure(array $config = [])
+    {
     }
 
     public function setContainer(Container $container)
@@ -74,6 +120,7 @@ class CoreEngine extends BaseObject
 
     public function generateObject($typeName)
     {
+        var_dump('aaa');exit;
         return $this->getContainer()->get($typeName);
     }
 }

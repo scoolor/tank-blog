@@ -11,10 +11,15 @@ class EngineZero extends CoreEngine
 {
     private static $instance = null;
 
-    private function __construct(Configure $config = null)
+    private function __construct()
     {
         //类自动加载机制,无法成功注册抛异常,添加此函数到队列之首
         spl_autoload_register([$this, '_autoload'], true, true);
+        $this->init();
+    }
+
+    private function init()
+    {
     }
 
     private function __clone()
@@ -22,7 +27,7 @@ class EngineZero extends CoreEngine
         return self::$instance;
     }
 
-    public static function instance(Configure $config = null)
+    public static function instance(array $config = [])
     {
         if (is_null(self::$instance)) {
             self::$instance = new self($config);
