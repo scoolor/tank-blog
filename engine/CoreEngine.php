@@ -118,9 +118,13 @@ class CoreEngine extends BaseObject
         return $this->container;
     }
 
-    public function generateObject($typeName)
+    public function generateObject($typeName, array $params = [])
     {
-        var_dump('aaa');exit;
-        return $this->getContainer()->get($typeName);
+        if (is_string($typeName)) {
+            return $this->getContainer()->get($typeName, $params);
+        } else if (is_array($typeName) && isset($typeName['class'])) {
+            return $this->getContainer()->get($typeName, $params);
+        }
+
     }
 }
