@@ -92,6 +92,8 @@ class Container extends BaseObject
     public function build($name, array $params = [], array $config = [])
     {
         list($reflection, $dependencies) = $this->parseDependency($name);
+
+
     }
 
     public function parseDependency($name)
@@ -106,7 +108,16 @@ class Container extends BaseObject
 
         $constructor = $reflection->getConstructor();
         if (!is_null($constructor)) {
-            
+            //php函数传入实参,按顺序赋值给形参.不支持按形参名指定赋值
+            foreach ($constructor->getParameters() as $eachParameter) {
+
+                if ($eachParameter->isDefaultValueAvailable()) {
+                    $dependencies[] = $eachParameter->getDefaultValue();
+                } else {
+                    $className = $eachParameter->getClass();
+                    $dependencies[] = $className ?? null;
+                }
+            }
         }
 
         $this->_reflections[$name] = $reflection;
