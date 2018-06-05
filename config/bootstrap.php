@@ -16,3 +16,7 @@ $engine->registerAlias([
     '@root'=> dirname(__DIR__),
     '@app' => dirname(__DIR__).'/app'
 ]);
+
+$engine->set('app', [
+    'class' => '\engine\application\web\Application'
+]);

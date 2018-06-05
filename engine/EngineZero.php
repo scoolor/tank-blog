@@ -15,6 +15,7 @@ class EngineZero extends CoreEngine
     {
         //类自动加载机制,无法成功注册抛异常,添加此函数到队列之首
         spl_autoload_register([$this, '_autoload'], true, true);
+        $this->setContainer(new Container());
         $this->init();
     }
 

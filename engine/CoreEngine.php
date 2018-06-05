@@ -104,10 +104,6 @@ class CoreEngine extends BaseObject
         include($classFile);
     }
 
-    public function loadConfigure(array $config = [])
-    {
-    }
-
     public function setContainer(Container $container)
     {
         $this->container = $container;
@@ -118,13 +114,35 @@ class CoreEngine extends BaseObject
         return $this->container;
     }
 
+    public function set($name, array $contract, array $params = [])
+    {
+        $this->getContainer()->set($name, $contract, $params);
+    }
+
+    /**
+     * @param $name
+     * @param array $params
+     * @param array $config
+     * @return mixed|null
+     */
+    public function get($name, array $params = [], array $config = [])
+    {
+        return $this->getContainer()->get($name, $params, $config);
+    }
+
+    public function setSingleton($name, array $contract, array $params = [])
+    {
+        $this->getContainer()->setSingleton($name, $contract, $params);
+    }
+
     public function generateObject($typeName, array $params = [])
     {
         if (is_string($typeName)) {
             return $this->getContainer()->get($typeName, $params);
         } else if (is_array($typeName) && isset($typeName['class'])) {
-            return $this->getContainer()->get($typeName, $params);
+            $name = $typeName['class'];
+            unset($typeName['class']);
+            return $this->getContainer()->get($name, $params, $typeName);
         }
-
     }
 }

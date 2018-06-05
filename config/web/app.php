@@ -5,4 +5,13 @@
  * Time: 上午10:31
  */
 
-return [];
+return [
+    'components' => [
+        'request' => [
+            'class' => '\engine\application\web\Request'
+        ],
+        'response' => [
+            'class' => '\engine\application\web\Response'
+        ],
+    ]
+];

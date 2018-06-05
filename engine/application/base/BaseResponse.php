@@ -1,14 +1,14 @@
 <?php
 /**
  * User: liuhao
- * Date: 18-4-23
- * Time: 上午10:39
+ * Date: 18-6-5
+ * Time: 上午11:28
  */
 
-namespace app\kernel;
+namespace engine\application\base;
 
 
-class Response
+abstract class BaseResponse extends Component
 {
     public $content;
 

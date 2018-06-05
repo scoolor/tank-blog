@@ -7,6 +7,7 @@
 
 namespace engine;
 
+use ReflectionClass;
 
 class Container extends BaseObject
 {
@@ -93,7 +94,24 @@ class Container extends BaseObject
     {
         list($reflection, $dependencies) = $this->parseDependency($name);
 
+        foreach ($params as $key => $value) {
+            if (!isset($dependencies[$key])) {
+                $dependencies[$key]['class'] = null;
+            }
+            $dependencies[$key]['value'] = $value;
+        }
 
+        $dependencies = $this->resolveDependency($dependencies, $reflection);
+
+        $object = $reflection->newInstanceArgs($dependencies);
+
+        if (!empty($config)) {
+            foreach ($config as $name => $item) {
+                $object->$name = $item;
+            }
+        }
+
+        return $object;
     }
 
     public function parseDependency($name)
@@ -102,7 +120,7 @@ class Container extends BaseObject
             return [$this->_reflections[$name], $this->_dependencies[$name]];
         }
 
-        $reflection = new \ReflectionClass($name);
+        $reflection = new ReflectionClass($name);
         $dependencies = [];
 
 
@@ -112,17 +130,41 @@ class Container extends BaseObject
             foreach ($constructor->getParameters() as $eachParameter) {
 
                 if ($eachParameter->isDefaultValueAvailable()) {
-                    $dependencies[] = $eachParameter->getDefaultValue();
+                    $dependencies[] = [
+                        'class' => null,
+                        'value' => $eachParameter->getDefaultValue()
+                    ];
                 } else {
                     $className = $eachParameter->getClass();
-                    $dependencies[] = $className ?? null;
+                    $dependencies[] = [
+                        'class' => $className ?? null,
+                        'value' => null
+                    ];
                 }
             }
         }
-
         $this->_reflections[$name] = $reflection;
         $this->_dependencies[$name] = $dependencies;
 
         return [$reflection, $dependencies];
+    }
+
+    protected function resolveDependency(array $dependencies, ReflectionClass $reflection = null)
+    {
+        $dependency = [];
+        foreach ($dependencies as $key => $eachDependency) {
+            if (!is_null($eachDependency['class'])) {
+                $dependency[$key] = $this->get($eachDependency['class']);
+            } else {
+                if (!is_null($eachDependency['value'])) {
+                    $dependency[$key] = $eachDependency['value'];
+                } else if (!is_null($reflection)) {
+                    $className = $reflection->getName();
+                    $parameterName = $reflection->getConstructor()->getParameters()[$key]->getName();
+                    throw new \Exception("class '{$className}' need parameter '{$parameterName}'.");
+                }
+            }
+        }
+        return $dependency;
     }
 }
