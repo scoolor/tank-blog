@@ -21,9 +21,11 @@ class Application extends BaseApplication
      */
     public function handle($request):Response
     {
-        $response = $this->getResponse();
+        list($route, $params) = $request->parse();
+        $res = $this->runAction($route, $params);
 
-        $response->content = 'Welcome!';
+        $response = $this->getResponse();
+        $response->content = $res;
         return $response;
     }
 

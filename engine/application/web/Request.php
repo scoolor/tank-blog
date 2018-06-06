@@ -75,4 +75,5 @@ class Request extends BaseRequest
         }
         return $this->postData;
     }
+
 }

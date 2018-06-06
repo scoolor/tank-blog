@@ -62,4 +62,8 @@ abstract class BaseApplication extends Component
     abstract protected function coreComponents():array;
 
 
+    public function runAction()
+    {
+
+    }
 }
