@@ -1,8 +1,8 @@
 <?php
 /**
  * User: liuhao
- * Date: 18-4-23
- * Time: 上午11:11
+ * Date: 18-6-7
+ * Time: 下午2:48
  */
 
 namespace app\controllers;
@@ -10,10 +10,10 @@ namespace app\controllers;
 
 use engine\application\web\Controller;
 
-class BaseController extends Controller
+class WelcomeController extends Controller
 {
     public function actionIndex()
     {
-        var_dump('Hello My Framework!');
+        echo "Welcome to Tank Blog!";
     }
 }

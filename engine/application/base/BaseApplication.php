@@ -8,8 +8,12 @@
 namespace engine\application\base;
 
 
+use engine\EngineZero;
+
 abstract class BaseApplication extends Component
 {
+    protected $controllerNameSpace = '\controllers';
+
     public function __construct(array $config = [])
     {
         $components = $this->coreComponents();
@@ -37,7 +41,6 @@ abstract class BaseApplication extends Component
 
         } catch (\Exception $e) {
             var_dump($e->getMessage());
-            var_dump($e->getTrace());
         }
 
     }
@@ -62,8 +65,29 @@ abstract class BaseApplication extends Component
     abstract protected function coreComponents():array;
 
 
-    public function runAction()
+    public function runAction(array $route,array $params = [])
     {
+        list($controller, $actionID) = $this->createController($route);
+        $res = $controller->runAction($actionID, $params);
 
+        return $res;
+    }
+
+    /**
+     * @param array $route
+     * @return array
+     */
+    public function createController(array $route)
+    {
+        $controllerID = $route[0];
+        $controllerName = EngineZero::formatToCamel($controllerID);
+        $controllerClass = $this->controllerNameSpace.'\\'.$controllerName.'Controller';
+
+        $controller = EngineZero::instance()->generateObject($controllerClass);
+
+        $actionID = !empty($route[1]) ? $route[1] : $controller->defaultAction;
+        $actionID = 'action'.EngineZero::formatToCamel($actionID);
+
+        return [$controller, $actionID];
     }
 }

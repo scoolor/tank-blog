@@ -14,6 +14,8 @@ use engine\application\base\BaseApplication;
 class Application extends BaseApplication
 {
 
+    protected $controllerNameSpace = '\app\controllers';
+
     /**
      * @param Request $request
      * @return Response
@@ -22,6 +24,7 @@ class Application extends BaseApplication
     public function handle($request):Response
     {
         list($route, $params) = $request->parse();
+
         $res = $this->runAction($route, $params);
 
         $response = $this->getResponse();

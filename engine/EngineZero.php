@@ -36,4 +36,13 @@ class EngineZero extends CoreEngine
 
         return self::$instance;
     }
+
+    public static function formatToCamel($string, $delimiter = "-_")
+    {
+        $res = preg_replace_callback("/[{$delimiter}].+?/", function ($matchs) use ($delimiter) {
+            return strtoupper(ltrim($matchs[0], $delimiter));
+        }, $string);
+
+        return ucfirst($res);
+    }
 }

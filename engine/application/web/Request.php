@@ -55,7 +55,15 @@ class Request extends BaseRequest
         return $_SERVER['SERVER_NAME'] ?? '';
     }
 
-    public function getRouteParams()
+    public function getPostData()
+    {
+        if (empty($this->postData)) {
+            $this->postData = $_POST;
+        }
+        return $this->postData;
+    }
+
+    public function parse()
     {
         $queryParams = $this->queryParams();
         $routeParams = $queryParams[$this->routeMark] ?? '';
@@ -65,15 +73,19 @@ class Request extends BaseRequest
         } else {
             $routeParams = [];
         }
-        return $routeParams;
-    }
 
-    public function getPostData()
-    {
-        if (empty($this->postData)) {
-            $this->postData = $_POST;
+        $routeCount = count($routeParams);
+
+        switch ($routeCount) {
+            case 0:
+                $routeParams = ['welcome'];
+                break;
+            default:
+                break;
         }
-        return $this->postData;
-    }
 
+        unset($queryParams[$this->routeMark]);
+
+        return [$routeParams, $queryParams];
+    }
 }
