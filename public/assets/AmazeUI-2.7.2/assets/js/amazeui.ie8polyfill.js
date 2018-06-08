@@ -2616,7 +2616,7 @@ if (!Object.isExtensible) {
   'show,table,time,timeEnd,timeline,timelineEnd,timeStamp,trace,warn').split(',');
   while (prop = properties.pop()) if (!con[prop]) con[prop] = empty;
   while (method = methods.pop()) if (typeof con[method] !== 'function') con[method] = dummy;
-  // Using `this` for web workers & supports Browserify / Webpack.
+  // Using `this` for public workers & supports Browserify / Webpack.
 })(typeof window === 'undefined' ? this : window);
 
 !window.addEventListener && (function (WindowPrototype, DocumentPrototype, ElementPrototype, addEventListener, removeEventListener, dispatchEvent, registry) {

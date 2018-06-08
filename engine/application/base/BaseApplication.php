@@ -12,7 +12,7 @@ use engine\EngineZero;
 
 abstract class BaseApplication extends Component
 {
-    protected $controllerNameSpace = '\controllers';
+    public $controllerNameSpace = '';
     public $controllerSuffix = 'Controller';
     public $actionPrefix = 'action';
 
@@ -20,6 +20,7 @@ abstract class BaseApplication extends Component
     {
         EngineZero::$app = $this;
         $this->registerAlias($config);
+        unset($config['alias']);
         $components = $this->coreComponents();
         if (!empty($config['components']) && is_array($config['components'])) {
             foreach ($config['components'] as $name => $eachItem) {
@@ -31,6 +32,8 @@ abstract class BaseApplication extends Component
             }
         }
         $this->loadComponents($components);
+        unset($config['components']);
+        $this->loadDefaultValue($config);
     }
 
     public function run()
@@ -86,7 +89,6 @@ abstract class BaseApplication extends Component
         $controllerID = $route[0];
         $controllerName = EngineZero::formatToCamel($controllerID);
         $controllerClass = $this->controllerNameSpace.'\\'.$controllerName.$this->controllerSuffix;
-
         $controller = EngineZero::instance()->generateObject($controllerClass);
 
         $actionID = !empty($route[1]) ? $route[1] : $controller->defaultAction;
@@ -106,6 +108,13 @@ abstract class BaseApplication extends Component
                 }
             }
             $engine->registerAlias($aliasMap);
+        }
+    }
+
+    public function loadDefaultValue(array $config = [])
+    {
+        foreach ($config as $name => $value) {
+            $this->$name = $value;
         }
     }
 }

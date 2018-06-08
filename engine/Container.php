@@ -93,7 +93,6 @@ class Container extends BaseObject
     public function build($name, array $params = [], array $config = [])
     {
         list($reflection, $dependencies) = $this->parseDependency($name);
-
         foreach ($params as $key => $value) {
             if (!isset($dependencies[$key])) {
                 $dependencies[$key]['class'] = null;
@@ -102,9 +101,7 @@ class Container extends BaseObject
         }
 
         $dependencies = $this->resolveDependency($dependencies, $reflection);
-
         $object = $reflection->newInstanceArgs($dependencies);
-
         if (!empty($config)) {
             foreach ($config as $name => $item) {
                 $object->$name = $item;

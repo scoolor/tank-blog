@@ -6,6 +6,10 @@
  */
 
 return [
+    'controllerNameSpace' => '\admin\controllers',
+    'alias' => [
+
+    ],
     'components' => [
         'request' => [
             'class' => '\engine\application\web\Request'

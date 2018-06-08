@@ -13,9 +13,6 @@ use engine\application\base\BaseApplication;
 
 class Application extends BaseApplication
 {
-
-    protected $controllerNameSpace = '\app\controllers';
-
     /**
      * @param Request $request
      * @return Response
@@ -53,12 +50,12 @@ class Application extends BaseApplication
     protected function coreComponents(): array
     {
         return [
-            'request' => [
-                'class' => '\engine\application\web\Request',
-            ],
-            'response' => [
-                'class' => '\engine\application\web\Response',
-            ]
+//            'request' => [
+//                'class' => '\engine\application\web\Request',
+//            ],
+//            'response' => [
+//                'class' => '\engine\application\web\Response',
+//            ]
         ];
     }
 }
