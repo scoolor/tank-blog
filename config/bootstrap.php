@@ -13,8 +13,9 @@ require_once dirname(__DIR__).'/vendor/autoload.php';
 $engine = EngineZero::instance();
 
 $engine->registerAlias([
-    '@root'=> dirname(__DIR__),
-    '@app' => dirname(__DIR__).'/app'
+    '@root' => dirname(__DIR__),
+    '@app'  => dirname(__DIR__).'/app',
+    '@view' => dirname(__DIR__).'/app/views',
 ]);
 
 $engine->set('app', [

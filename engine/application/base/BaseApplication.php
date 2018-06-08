@@ -13,9 +13,13 @@ use engine\EngineZero;
 abstract class BaseApplication extends Component
 {
     protected $controllerNameSpace = '\controllers';
+    public $controllerSuffix = 'Controller';
+    public $actionPrefix = 'action';
 
     public function __construct(array $config = [])
     {
+        EngineZero::$app = $this;
+        $this->registerAlias($config);
         $components = $this->coreComponents();
         if (!empty($config['components']) && is_array($config['components'])) {
             foreach ($config['components'] as $name => $eachItem) {
@@ -81,13 +85,27 @@ abstract class BaseApplication extends Component
     {
         $controllerID = $route[0];
         $controllerName = EngineZero::formatToCamel($controllerID);
-        $controllerClass = $this->controllerNameSpace.'\\'.$controllerName.'Controller';
+        $controllerClass = $this->controllerNameSpace.'\\'.$controllerName.$this->controllerSuffix;
 
         $controller = EngineZero::instance()->generateObject($controllerClass);
 
         $actionID = !empty($route[1]) ? $route[1] : $controller->defaultAction;
-        $actionID = 'action'.EngineZero::formatToCamel($actionID);
+        $actionID = $this->actionPrefix.EngineZero::formatToCamel($actionID);
 
         return [$controller, $actionID];
+    }
+
+    public function registerAlias(array $config)
+    {
+        if (isset($config['alias']) && is_array($config['alias'])) {
+            $aliasMap = [];
+            $engine = EngineZero::instance();
+            foreach ($config['alias'] as $name => $path) {
+                if (strpos($name, $engine->aliasFlag) === 0 && is_string($path)) {
+                    $aliasMap[$name] = $path;
+                }
+            }
+            $engine->registerAlias($aliasMap);
+        }
     }
 }

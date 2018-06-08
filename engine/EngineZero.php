@@ -1,6 +1,8 @@
 <?php
 namespace engine;
 
+use engine\application\web\Application;
+
 /**
  * User: liuhao
  * Date: 18-5-30
@@ -9,6 +11,11 @@ namespace engine;
 
 class EngineZero extends CoreEngine
 {
+    /**
+     * @var Application
+     */
+    public static $app;
+
     private static $instance = null;
 
     private function __construct()
@@ -44,5 +51,14 @@ class EngineZero extends CoreEngine
         }, $string);
 
         return ucfirst($res);
+    }
+
+    public static function formatToSnake($string, $delimiter = "-")
+    {
+        $res = preg_replace_callback("/[A-Z].+?/", function ($matchs) use ($delimiter) {
+            return $delimiter.strtolower($matchs[0]);
+        }, $string);
+
+        return ltrim($res, $delimiter);
     }
 }

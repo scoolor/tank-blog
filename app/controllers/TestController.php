@@ -12,6 +12,6 @@ class TestController extends BaseController
 {
     public function actionIndex()
     {
-        return 'welcome to tank-blog';
+        return $this->view('index', ['ab']);
     }
 }
