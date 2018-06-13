@@ -17,5 +17,8 @@ return [
         'response' => [
             'class' => '\engine\application\web\Response'
         ],
+        'error' => [
+            'class' => 'engine\application\web\ErrorHandler',
+        ],
     ]
 ];

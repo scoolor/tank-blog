@@ -8,6 +8,9 @@
 namespace engine\application\base;
 
 
+use engine\application\web\ErrorHandler;
+use engine\application\web\Request;
+use engine\application\web\Response;
 use engine\EngineZero;
 
 abstract class BaseApplication extends Component
@@ -16,6 +19,11 @@ abstract class BaseApplication extends Component
     public $controllerSuffix = 'Controller';
     public $actionPrefix = 'action';
 
+    /**
+     * BaseApplication constructor.
+     * @param array $config
+     * @throws \Exception
+     */
     public function __construct(array $config = [])
     {
         EngineZero::$app = $this;
@@ -34,6 +42,8 @@ abstract class BaseApplication extends Component
         $this->loadComponents($components);
         unset($config['components']);
         $this->loadDefaultValue($config);
+        $this->getErrorHandler()->register();
+        $this->init();
     }
 
     public function run()
@@ -52,16 +62,35 @@ abstract class BaseApplication extends Component
 
     }
 
-    /**
-     * @return BaseRequest
-     */
-    abstract public function getRequest();
+    public function init()
+    {}
 
     /**
-     * @return BaseResponse
+     * @return BaseRequest|Request
+     * @throws \Exception
      */
-    abstract public function getResponse();
+    public function getRequest()
+    {
+        return $this->getComponent('request');
+    }
 
+    /**
+     * @return BaseResponse|Response
+     * @throws \Exception
+     */
+    public function getResponse()
+    {
+        return $this->getComponent('response');
+    }
+
+    /**
+     * @return BaseErrorHandler|ErrorHandler
+     * @throws \Exception
+     */
+    public function getErrorHandler()
+    {
+        return $this->getComponent('error');
+    }
 
     /**
      * @param BaseRequest $request

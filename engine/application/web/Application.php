@@ -13,6 +13,11 @@ use engine\application\base\BaseApplication;
 
 class Application extends BaseApplication
 {
+
+    public function init()
+    {
+
+    }
     /**
      * @param Request $request
      * @return Response
@@ -29,33 +34,19 @@ class Application extends BaseApplication
         return $response;
     }
 
-    /**
-     * @return Request
-     * @throws \Exception
-     */
-    public function getRequest()
-    {
-        return $this->getComponent('request');
-    }
-
-    /**
-     * @return Response
-     * @throws \Exception
-     */
-    public function getResponse():Response
-    {
-        return $this->getComponent('response');
-    }
 
     protected function coreComponents(): array
     {
         return [
-//            'request' => [
-//                'class' => '\engine\application\web\Request',
-//            ],
-//            'response' => [
-//                'class' => '\engine\application\web\Response',
-//            ]
+            'request' => [
+                'class' => '\engine\application\web\Request',
+            ],
+            'response' => [
+                'class' => '\engine\application\web\Response',
+            ],
+            'error' => [
+                'class' => 'engine\application\web\ErrorHandler',
+            ],
         ];
     }
 }
