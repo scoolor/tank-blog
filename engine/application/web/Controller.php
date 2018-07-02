@@ -74,7 +74,7 @@ class Controller extends BaseController
         $viewPath = $engine->parseAlias('@view');
 
         $layoutFile = $viewPath.$this->layout.'.php';
-        return $this->renderPhpFile($layoutFile, ['content' => $content]);
+        return $this->renderPhpFile($layoutFile, ['content' => $content, 'domain' => 'http://www.tankblog.com']);
     }
 
     public function redirect(array $route = [], array $params = [])

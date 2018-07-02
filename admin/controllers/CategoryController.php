@@ -1,20 +1,17 @@
 <?php
 /**
  * User: liuhao
- * Date: 18-6-11
- * Time: 下午4:29
+ * Date: 18-7-2
+ * Time: 下午5:28
  */
 
 namespace admin\controllers;
 
 
-use engine\application\web\Controller;
-
-class WelcomeController extends Controller
+class CategoryController extends BaseController
 {
     public function actionIndex()
     {
         return $this->view('index');
     }
-
 }
