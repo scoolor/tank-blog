@@ -37,7 +37,7 @@ class Component extends BaseObject
                 return EngineZero::instance()->generateObject($value);
             }
         } else {
-            throw new \Exception('Component {$name} is not exists.');
+            throw new \Exception("Component {$name} is not exists.");
         }
     }
 
