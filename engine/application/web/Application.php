@@ -10,7 +10,12 @@ namespace engine\application\web;
 
 use engine\application\base\BaseApplication;
 
-
+/**
+ * Class Application
+ * @package engine\application\web
+ *
+ *
+ */
 class Application extends BaseApplication
 {
 

@@ -40,4 +40,14 @@ class Component extends BaseObject
             throw new \Exception('Component {$name} is not exists.');
         }
     }
+
+    /**
+     * @param $name
+     * @return mixed|null
+     * @throws \Exception
+     */
+    public function __get($name)
+    {
+        return $this->getComponent($name);
+    }
 }
