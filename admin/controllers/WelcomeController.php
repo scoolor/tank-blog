@@ -1,9 +1,4 @@
 <?php
-/**
- * User: liuhao
- * Date: 18-6-11
- * Time: 下午4:29
- */
 
 namespace admin\controllers;
 
@@ -17,6 +12,9 @@ class WelcomeController extends Controller
     {
         $db = MongoDB::instance();
         $collection = $db->users;
+
+        $result = $collection->find();
+        var_dump($result);
     }
 
 }

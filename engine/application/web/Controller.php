@@ -12,6 +12,10 @@ use engine\application\base\BaseController;
 use engine\application\exception\FileNotFoundException;
 use engine\EngineZero;
 
+/**
+ * Class Controller
+ * @package engine\application\web
+ */
 class Controller extends BaseController
 {
     public $layout = 'layout/index';

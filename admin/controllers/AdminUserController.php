@@ -1,17 +1,22 @@
 <?php
-/**
- * User: liuhao
- * Date: 18-7-2
- * Time: 下午4:35
- */
 
 namespace admin\controllers;
+
+
+use root\models\AdminUser;
 
 
 class AdminUserController extends BaseController
 {
     public function actionIndex()
     {
-        return $this->view('index');
+        $userCollection = (new AdminUser())->getCollection();
+
+        return $this->view('index', compact('userCollection'));
+    }
+
+    public function actionCreate()
+    {
+        return $this->view('create');
     }
 }

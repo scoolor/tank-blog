@@ -7,10 +7,7 @@
 
 namespace engine\application\exception;
 
-
-use engine\application\base\BaseException;
-
-class MethodNotExistException extends BaseException
+class MethodNotExistException extends \BadMethodCallException
 {
 
 }

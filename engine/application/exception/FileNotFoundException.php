@@ -8,9 +8,7 @@
 namespace engine\application\exception;
 
 
-use engine\application\base\BaseException;
-
-class FileNotFoundException extends BaseException
+class FileNotFoundException extends \InvalidArgumentException
 {
 
 }
