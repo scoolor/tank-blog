@@ -37,40 +37,33 @@ use \engine\application\web\Url;
         <form class="am-form">
             <table class="am-table am-table-striped am-table-hover table-main">
                 <thead>
-                <tr>
-                    <th class="table-check">
-                        <input type="checkbox" /></th>
-                    <th class="table-id">ID</th>
-                    <th class="table-title">用户名</th>
-                    <th class="table-type">密码</th>
-                    <th class="table-date am-hide-sm-only">创建日期</th>
-                    <th class="table-date am-hide-sm-only">修改日期</th>
-                    <th class="table-set">操作</th>
-                </tr>
+                    <tr>
+                        <th class="table-title">用户名</th>
+                        <th class="table-type">密码</th>
+                        <th class="table-set">操作</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><a href="#">admin</a></td>
-                    <td>root</td>
-                    <td class="am-hide-sm-only">2018-01-01</td>
-                    <td class="am-hide-sm-only">2018-01-01</td>
-                    <td>
-                        <div class="am-btn-toolbar">
-                            <div class="am-btn-group am-btn-group-xs">
-                                <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
-                                    <span class="am-icon-pencil-square-o"></span>
-                                    编辑
-                                </button>
-                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                    <span class="am-icon-trash-o"></span>
-                                    删除
-                                </button>
+                <?php foreach ($responseData as $eachData) {?>
+                    <tr>
+                        <td><a href="#"><?php echo $eachData['username']?></a></td>
+                        <td><?php echo $eachData['password']?></td>
+                        <td>
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                        <span class="am-icon-pencil-square-o"></span>
+                                        编辑
+                                    </button>
+                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                        <span class="am-icon-trash-o"></span>
+                                        删除
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                <?php }?>
                 </tbody>
             </table>
             <div class="am-cf">

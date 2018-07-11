@@ -54,16 +54,16 @@
         },
         {
             "name": "mongodb/mongodb",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "ae05e905dbb3ae5fac846a2906dd273d717708f2"
+                "reference": "0534ed0ff44e26fe96e9172e7f34e2bbf5c0efde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/ae05e905dbb3ae5fac846a2906dd273d717708f2",
-                "reference": "ae05e905dbb3ae5fac846a2906dd273d717708f2",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/0534ed0ff44e26fe96e9172e7f34e2bbf5c0efde",
+                "reference": "0534ed0ff44e26fe96e9172e7f34e2bbf5c0efde",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
@@ -115,7 +115,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2018-06-27T17:05:43+00:00"
+            "time": "2018-07-10T15:23:29+00:00"
         }
     ],
     "packages-dev": [

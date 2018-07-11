@@ -8,6 +8,9 @@
         "phpunit/phpunit": "^6.2"
     },
     "autoload": {
+        "files": [
+            "engine/foundation/helpers.php"
+        ],
         "psr-4": {
             "engine\\":"engine"
         }

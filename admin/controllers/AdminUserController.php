@@ -12,11 +12,42 @@ class AdminUserController extends BaseController
     {
         $userCollection = (new AdminUser())->getCollection();
 
-        return $this->view('index', compact('userCollection'));
+        $result = $userCollection->find();
+
+        $responseData = [];
+
+        foreach ($result as $each) {
+            $responseData[] = [
+                'username' => $each['username'],
+                'password' => $each['password'],
+            ];
+        }
+
+        return $this->view('index', compact('responseData'));
     }
 
     public function actionCreate()
     {
-        return $this->view('create');
+        $userCollection = (new AdminUser())->getCollection();
+
+        $result = $userCollection->insertOne([
+            'username' => 'test',
+            'password' => '123456',
+        ]);
+
+        var_dump($result->getInsertedId());
+    }
+
+
+    public function actionUpdate()
+    {
+        $userCollection = (new AdminUser())->getCollection();
+
+        $result = $userCollection->updateOne(
+           ['username' => 'test'],
+           ['$set', ['password' => '654321']]
+        );
+
+        var_dump($result->getUpsertedId());
     }
 }
