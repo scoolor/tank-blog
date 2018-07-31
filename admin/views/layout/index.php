@@ -186,7 +186,7 @@ use engine\application\web\Url;
 <script src="../assets/AmazeUI-2.7.2/assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 
-<!--[if (gte IE 9)|!(IE)]><!-->
+<!--[if (gte IE 9)|!(IE)]>
 <script src="<?php echo $domain?>/assets/js/jquery.min.js"></script>
 <!--<![endif]-->
 <script src="../assets/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
