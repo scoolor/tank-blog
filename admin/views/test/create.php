@@ -6,6 +6,7 @@
  * @copyright liu hao<liu546hao@163.com>
  */
 
+use \engine\application\web\Url;
 ?>
 
 
@@ -19,7 +20,7 @@
 
     <hr>
 
-    <form class="am-form">
+    <form class="am-form" action="<?php echo Url::generateUrl(['admin', 'admin-user', 'store'])?>">
     <div class="am-tabs am-margin" data-am-tabs>
         <ul class="am-tabs-nav am-nav am-nav-tabs">
             <li class="am-active"><a href="#admin-user-basic">基本信息</a></li>

@@ -81,8 +81,13 @@ class Controller extends BaseController
         return $this->renderPhpFile($layoutFile, ['content' => $content, 'domain' => 'http://www.tankblog.com']);
     }
 
-    public function redirect(array $route = [], array $params = [])
+    /**
+     * @param array $route
+     * @param int $statusCode
+     * @throws \Exception
+     */
+    public function redirect(array $route = [], $statusCode = 302)
     {
-
+        return EngineZero::$app->getResponse()->redirect(Url::generateUrl($route), $statusCode);
     }
 }

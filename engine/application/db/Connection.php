@@ -6,10 +6,12 @@
  * @copyright liu hao<liu546hao@163.com>
  */
 
-namespace root\models;
+namespace engine\application\db;
 
 
-class AdminUser extends BaseModel
+use engine\application\base\Component;
+
+class Connection extends Component
 {
-    public $collection = 'admin-user';
+
 }

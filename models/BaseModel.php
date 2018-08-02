@@ -19,7 +19,7 @@ class BaseModel extends Component
     /**
      * @return \MongoDB\Collection
      */
-    public function getCollection()
+    public function getDb()
     {
         $collection = $this->collection;
         if (empty($collection)) {
@@ -27,5 +27,42 @@ class BaseModel extends Component
         }
 
         return MongoDB::instance()->$collection;
+    }
+
+
+    /**
+     * @param array $conditions
+     * @param array $options
+     * @return \MongoDB\Driver\Cursor
+     */
+    public function find(array $conditions = [], array $options = [])
+    {
+        $collection = $this->getDb();
+        return $collection->find($conditions, $options);
+    }
+
+
+    /**
+     * @param $data
+     * @param array $options
+     * @return \MongoDB\InsertOneResult
+     */
+    public function insertOne($data, array $options = [])
+    {
+        $collection = $this->getDb();
+        return $collection->insertOne($data, $options);
+    }
+
+
+    /**
+     * @param array $conditions
+     * @param array $update
+     * @param array $options
+     * @return \MongoDB\UpdateResult
+     */
+    public function updateOne(array $conditions, array $update, array $options = [])
+    {
+        $collection = $this->getDb();
+        return $collection->updateOne($conditions, $update, $options);
     }
 }

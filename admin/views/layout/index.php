@@ -90,49 +90,17 @@ use engine\application\web\Url;
                         首页
                     </a>
                 </li>
-                <li>
-                    <a href="<?php echo Url::generateUrl(['admin', 'admin-user', 'index']);?>">
-                        <span class="am-icon-users"></span>
-                        后台用户管理
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo Url::generateUrl(['admin', 'admin-user', 'index']);?>">
-                        <span class="am-icon-users"></span>
-                        前端用户管理
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo Url::generateUrl(['admin', 'category', 'index']);?>">
-                        <span class="am-icon-th"></span>
-                        分类管理
-                    </a>
-                </li>
                 <li class="admin-parent">
-                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
-                        <span class="am-icon-file"></span>
-                        博客管理
+                    <a href="#" data-am-collapse="{target: '#admin-manage-collapse-nav'}">
+                        <span class="am-icon-users"></span>
+                        测试
                         <span class="am-icon-angle-right am-fr am-margin-right"></span>
                     </a>
-                    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="admin-manage-collapse-nav">
                         <li>
-                            <a href="#" class="am-cf">
+                            <a href="<?php echo Url::generateUrl(['admin', 'test', 'index']);?>" class="am-cf">
                                 <span class="am-icon-check"></span>
-                                文章
-                                <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="am-icon-puzzle-piece"></span>
-                                评论
-                                <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="am-icon-puzzle-piece"></span>
-                                回复
+                                测试用户
                                 <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
                             </a>
                         </li>
@@ -180,15 +148,12 @@ use engine\application\web\Url;
 
 <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
+<script src="<?php echo $domain?>/assets/js/jquery.min.js"></script>
+
 <!--[if lt IE 9]>
-<script src="<?php echo $domain ?>/assets/js/jquery.min.js"></script>
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
 <script src="../assets/AmazeUI-2.7.2/assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
-
-<!--[if (gte IE 9)|!(IE)]>
-<script src="<?php echo $domain?>/assets/js/jquery.min.js"></script>
-<!--<![endif]-->
 <script src="../assets/AmazeUI-2.7.2/assets/js/amazeui.min.js"></script>
 <script src="../assets/AmazeUI-2.7.2/assets/js/app.js"></script>
 </body>
