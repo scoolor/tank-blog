@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
+import NavBar from '@/components/NavBar'
+import SideBar from '@/components/SideBar'
+import FootBar from '@/components/FootBar'
+import Main from '@/components/Main'
 
 Vue.use(Router)
 
@@ -8,8 +11,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'home',
+      components: {
+        default: Main,
+        nav: NavBar,
+        side: SideBar,
+        foot: FootBar
+      }
     }
   ]
 })

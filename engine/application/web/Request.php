@@ -88,4 +88,18 @@ class Request extends BaseRequest
 
         return [$routeParams, $queryParams];
     }
+
+    /**
+     * 测试
+     */
+    public static function factory()
+    {
+        $query = $_GET;
+        $request = $_POST;
+        $attributes = [];
+        $cookies = $_COOKIE;
+        $files = $_FILES;
+        $server = $_SERVER;
+        $content = null;
+    }
 }
