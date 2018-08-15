@@ -1,57 +1,47 @@
 <template>
-  <header class="am-topbar am-topbar-inverse admin-header">
-    <div class="am-topbar-brand">
-      <strong>Tank Blog</strong> <small>后台管理系统</small>
+  <el-row class="nav-bar">
+    <el-col :span="6" class="logo-box">
+      <img src="../../assets/logo.png" class='logo' alt="">
+      <span class='title'>Blog管理系统</span>
+    </el-col>
+    <div class="user-box">
+      <span class='user-operation'>
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link">
+            <div class='user-info'>
+              <p class='display-text greeting'>欢迎</p>
+              <p class='display-text user-name'>admin</p>
+            </div>
+            <i class="el-icon-caret-bottom el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>修改信息</el-dropdown-item>
+            <el-dropdown-item>修改密码</el-dropdown-item>
+            <el-dropdown-item>退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </span>
+      <i class="fa fa-sign-out log-out-icon"></i>
     </div>
-
-    <!-- 没有显示???   -->
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
-
-    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-
-      <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-        <li>
-          <a href="javascript:;">
-            <span class="am-icon-envelope-o"></span>
-            收件箱
-            <span class="am-badge am-badge-warning">5</span>
-          </a>
-        </li>
-        <li class="am-dropdown" data-am-dropdown>
-          <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-            <span class="am-icon-users"></span>
-            管理员
-            <span class="am-icon-caret-down"></span>
-          </a>
-          <ul class="am-dropdown-content">
-            <li>
-              <a href="#">
-                <span class="am-icon-user"></span>
-                资料
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="am-icon-cog"></span>
-                设置
-              </a>
-            </li>
-            <li>
-              <a href="#"><span class="am-icon-power-off"></span>
-                退出
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="am-hide-sm-only">
-          <a href="javascript:;" id="admin-fullscreen">
-            <span class="am-icon-arrows-alt"></span>
-            <span class="admin-fullText">开启全屏</span>
-          </a>
-        </li>
-      </ul>
+    <div class="notify-box">
+      <el-dropdown trigger="click">
+        <span class="el-dropdown-link">
+          <span class="tank-message">消息</span>
+          <i class="el-icon-caret-bottom el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item class="clearfix">
+            评论
+            <el-badge class="mark" :value="12" />
+          </el-dropdown-item>
+          <el-dropdown-item class="clearfix">
+            回复
+            <el-badge class="mark" :value="3" />
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
-  </header>
+  </el-row>
 </template>
 
 <script>
@@ -60,5 +50,97 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+  .el-menu .el-submenu .el-menu-item {
+    min-height:60px;
+  }
+  .logo-box {
+    line-height: 60px;
+    min-width: 400px;
+    padding-right: 150px;
+    .logo {
+      height: 50px;
+      width: 50px;
+      margin-right: 5px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+    .title {
+      vertical-align: middle;
+      font-size: 22px;
+      font-family: cursive;
+      letter-spacing: 3px;
+    }
+  }
+  .nav-bar {
+    width: 100%;
+    height: 60px;
+    min-width:600px;
+    background: #263238;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    color: #FFF;
+    border-bottom: 1px solid #000000;
+    .log-out-icon {
+      vertical-align: middle;
+      cursor: pointer;
+      margin-right:10px;
+    }
+  }
+  .user-box {
+    height: 60px;
+    line-height: 60px;
+    text-align:right;
+    float:right;
+  }
+
+  .notify-box {
+    height: 60px;
+    line-height:60px;
+    float: right;
+    margin-right: 20px;
+    .tank-message {
+      color:#f0f9eb;
+    }
+  }
+
+  .user-info{
+    display: inline-block;
+    width:auto;
+    height: 60px;
+    vertical-align: middle;
+    padding: 0 5px;
+    .display-text{
+      line-height: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .greeting{
+      color:#f0f9eb;
+      font-size: 12px;
+      margin-top:8px;
+      margin-bottom: 4px;
+    }
+    .user-name{
+      color:#8BDF4F;
+      font-weight:bolder;
+      margin-top:4px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .user-operation {
+    cursor: pointer;
+    margin-right: 5px;
+    .el-dropdown {
+      color: #FFF;
+    }
+  }
+
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #909399;
+  }
 </style>

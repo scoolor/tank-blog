@@ -1,34 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import NavBar from '@/components/layouts/NavBar'
-import SideBar from '@/components/layouts/SideBar'
-import FootBar from '@/components/layouts/FootBar'
-import Main from '@/components/Main'
-import Test from '@/components/Test'
-import Login from '@/components/Login'
-import Home from '@/components/home/Home'
-import AdminUserList from '@/components/admin-user/AdminUserList'
+import { Layout } from '@/components/layouts/'
+import { Home } from '@/components/home/'
+import { AdminUserList } from '@/components/admin-user/'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/login',
-      name: 'login',
-      components: {
-        default: Login
-      }
-    },
-    {
       path: '/',
       redirect: '/home',
-      components: {
-        default: Main,
-        nav: NavBar,
-        side: SideBar,
-        foot: FootBar
-      },
+      component: Layout,
       children: [
         {
           path: 'home',
@@ -37,11 +20,8 @@ export default new Router({
         },
         {
           path: 'admin-user-list',
+          name: 'admin-user-list',
           component: AdminUserList
-        },
-        {
-          path: 'test',
-          component: Test
         }
       ]
     }

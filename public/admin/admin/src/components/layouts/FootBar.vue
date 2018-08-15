@@ -1,8 +1,12 @@
 <template>
-  <footer class="admin-content-footer">
-    <hr>
-    <p class="am-padding-left">© Create by 2lovecode</p>
-  </footer>
+  <el-row style="border-top: 1px solid ghostwhite">
+    <el-col>
+      <span>
+      @by 2lovecode
+      </span>
+    </el-col>
+  </el-row>
+
 </template>
 
 <script>
@@ -12,5 +16,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

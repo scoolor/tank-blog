@@ -1,94 +1,74 @@
 <template>
-  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-    <div class="am-offcanvas-bar admin-offcanvas-bar">
-      <ul class="am-list admin-sidebar-list">
-        <li>
-          <router-link to="/home">
-            <span class="am-icon-home"></span>
-            仪表盘
-          </router-link>
-        </li>
-        <li class="admin-parent">
-          <a href="#" data-am-collapse="{target: '#admin-user-manage-collapse-nav'}">
-            <span class="am-icon-users"></span>
-            帐号管理[后台]
-            <span class="am-icon-angle-right am-fr am-margin-right"></span>
-          </a>
-          <ul class="am-list am-collapse admin-sidebar-sub" id="admin-user-manage-collapse-nav">
-            <li>
-              <router-link class="am-cf" to="/admin-user-list">
-                <span class="am-icon-check"></span>
+  <el-scrollbar style="height:100%;overflow-x: hidden;">
+  <el-row style="">
+    <el-col>
+      <el-menu :default-openeds="['1']" background-color="#263238" text-color="#FFF" active-text-color="#ffd04b" style="border-right-color: #263238">
+        <router-link to="/home">
+        <el-menu-item index="1">
+          <template slot="title">
+            <i class="fa fa-tachometer"></i>
+              <span slot="title">
+                仪表盘
+              </span>
+          </template>
+        </el-menu-item>
+        </router-link>
+        <el-submenu index="2">
+          <template slot="title">
+            <i class="fa fa-users"></i>
+            <span>
+              帐号管理[后台]
+            </span>
+          </template>
+          <el-menu-item-group>
+            <template slot="title">
+              <span class="menu-group">帐号</span>
+            </template>
+            <router-link to="/admin-user-list">
+              <el-menu-item index="2-1">
+              <span class="menu-item">
                 用户
-                <span class="am-badge am-badge-secondary am-margin-right am-fr">24</span>
-              </router-link>
-            </li>
-            <li>
-              <router-link class="am-cf" to="/test">
-                <span class="am-icon-check"></span>
-                用户组
-              </router-link>
-            </li>
-            <li>
-              <router-link class="am-cf" to="/test">
-                <span class="am-icon-check"></span>
+              </span>
+              </el-menu-item>
+            </router-link>
+            <el-menu-item index="2-2">
+              <span class="menu-item">
                 角色
-              </router-link>
-            </li>
-            <li>
-              <router-link class="am-cf" to="/test">
-                <span class="am-icon-check"></span>
-                权限
-              </router-link>
-            </li>
-            <li>
-              <router-link class="am-cf" to="/test">
-                <span class="am-icon-check"></span>
-                菜单[权限]
-              </router-link>
-            </li>
-            <li>
-              <router-link class="am-cf" to="/test">
-                <span class="am-icon-check"></span>
-                操作[权限]
-              </router-link>
-            </li>
-            <li>
-              <router-link class="am-cf" to="/test">
-                <span class="am-icon-check"></span>
-                页面元素[权限]
-              </router-link>
-            </li>
-            <li>
-              <router-link class="am-cf" to="/test">
-                <span class="am-icon-check"></span>
-                文件[权限]
-              </router-link>
-            </li>
-          </ul>
-        </li>
-      </ul>
-
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p>
-            <span class="am-icon-bookmark"></span>
-            公告
-          </p>
-          <p>慢,是一种哲学</p>
-        </div>
-      </div>
-
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p>
-            <span class="am-icon-tag"></span>
-            简介
-          </p>
-          <p>Blog的前世今生</p>
-        </div>
-      </div>
-    </div>
-  </div>
+              </span>
+            </el-menu-item>
+          </el-menu-item-group>
+          <el-submenu index="2-3">
+            <template slot="title">
+              <span class="menu-item">
+                资源
+              </span>
+            </template>
+            <el-menu-item index="2-3-1">
+              <span class="menu-item">
+                菜单
+              </span>
+            </el-menu-item>
+            <el-menu-item index="2-3-2">
+              <span class="menu-item">
+                操作
+              </span>
+            </el-menu-item>
+            <el-menu-item index="2-3-3">
+              <span class="menu-item">
+                页面元素
+              </span>
+            </el-menu-item>
+            <el-menu-item index="2-3-4">
+              <span class="menu-item">
+                文件
+              </span>
+            </el-menu-item>
+          </el-submenu>
+        </el-submenu>
+      </el-menu>
+    </el-col>
+  </el-row>
+  </el-scrollbar>
 </template>
 
 <script>
@@ -97,6 +77,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
+  .el-submenu .el-menu-item {
+    min-width:180px;
+  }
 </style>
