@@ -1,10 +1,10 @@
 <template>
-  <el-container>
+  <el-container style="min-height:99vh">
     <el-header>
       <nav-bar></nav-bar>
     </el-header>
     <el-container>
-      <el-aside width="200px">
+      <el-aside width="15vw">
         <side-bar></side-bar>
       </el-aside>
       <el-container>
