@@ -6,7 +6,6 @@
       </span>
     </el-col>
   </el-row>
-
 </template>
 
 <script>

@@ -35,4 +35,10 @@ class TestController extends BaseController
         ]);
         $this->redirect(['admin', 'test', 'index']);
     }
+
+    public function actionLogin()
+    {
+        return json_encode(['code' => 's']);
+    }
+
 }
