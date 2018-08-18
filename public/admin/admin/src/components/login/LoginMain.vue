@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col :span="8" :offset="8">
+    <el-col :span="6" :offset="9" style="margin-top:15vh;">
       <el-card shadow="always">
         <div slot="header" class="login-header-box">
           <span class="header-title">Blog管理系统</span>
@@ -12,16 +12,16 @@
           <el-form-item label="密码" prop="userPassWord">
             <el-input type="password" v-model="loginForm.userPassWord" placeholder="请输入密码"></el-input>
           </el-form-item>
-          <el-row>
-            <el-col :span="6" :offset="9">
-              <el-button type="primary" @click="submitForm('loginForm')">
+        </el-form>
+        <el-row style="text-align: center;">
+          <el-col :span="6" :offset="9">
+            <el-button type="primary" @click="submitForm('loginForm')">
                 <span>
                   &nbsp;&nbsp;&nbsp;&nbsp;登录&nbsp;&nbsp;&nbsp;&nbsp;
                 </span>
-              </el-button>
-            </el-col>
-          </el-row>
-        </el-form>
+            </el-button>
+          </el-col>
+        </el-row>
         <el-row class="login-bottom-box">
           <el-col :span="6" :offset="9">
             <span>
@@ -111,6 +111,7 @@ export default {
     }
   }
   .login-bottom-box {
+    margin-top: 20px;
     text-align: center;
     font-size: 12px;
   }
