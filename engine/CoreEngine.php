@@ -101,6 +101,13 @@ class CoreEngine extends BaseObject
             }
 
         }
+
+        //WAIT
+        //如果不加这个判断,执行phpunit时,一些类的加载会透到这里来动态加载,有点奇怪.
+        if ($classFile === false || !is_file($classFile)) {
+            return;
+        }
+
         include($classFile);
     }
 
