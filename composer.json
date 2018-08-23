@@ -1,7 +1,21 @@
 {
+    "name" : "2lovecode/tank-blog",
+    "description" : "a simple blog system",
+    "type" : "project",
+    "license" : [
+        "GPL-3.0+",
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "liu hao",
+            "email": "liu546hao@163.com",
+            "homepage": "http://blog.csdn.net/AIkiller",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": ">7.0",
-        "erusev/parsedown": "^1.7",
         "mongodb/mongodb":"^1.4.0"
     },
     "require-dev": {

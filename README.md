@@ -4,3 +4,6 @@ http://pecl.php.net/package/mongodb
 
 ###### 2.使用mongodb/mongodb库,操作mongodb
 https://packagist.org/packages/mongodb/mongodb
+
+###### 3.单元测试
+在项目根目录下执行 vendor/bin/phpunit
