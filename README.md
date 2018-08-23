@@ -1,4 +1,4 @@
-#### 撸一个博客
+#### 从零开发博客系统。php不使用框架从零实现Restful api，vue开发单页面前端。旨在学习框架实现和vue前端开发，同时学习mongodb的使用
 ###### 1.数据库使用mongodb, 需要安装mongodb扩展
 http://pecl.php.net/package/mongodb
 
