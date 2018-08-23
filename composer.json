@@ -3,8 +3,7 @@
     "description" : "a simple blog system",
     "type" : "project",
     "license" : [
-        "GPL-3.0+",
-        "MIT"
+        "GPL-3.0+"
     ],
     "authors": [
         {
