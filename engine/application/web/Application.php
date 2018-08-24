@@ -23,6 +23,7 @@ class Application extends BaseApplication
     {
 
     }
+
     /**
      * @param Request $request
      * @return Response

@@ -8,11 +8,8 @@
 
 namespace engine\pipeline;
 
-interface PipeLineInterface
+
+interface StageInterface
 {
-    public function send($payLoad);
-
-    public function then(StageInterface $stage);
-
-    public function run();
+    public function handle();
 }
