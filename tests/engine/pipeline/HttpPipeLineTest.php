@@ -22,5 +22,6 @@ class HttpPipeLineTest extends BaseTestCase
         $result = $httpPipe->send($request);
 
         $this->assertInstanceOf('engine\pipeline\HttpPipeLine', $result);
+        
     }
 }
