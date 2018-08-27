@@ -24,22 +24,6 @@ class Application extends BaseApplication
 
     }
 
-    /**
-     * @param Request $request
-     * @return Response
-     * @throws \Exception
-     */
-    public function handle($request):Response
-    {
-        list($route, $params) = $request->parse();
-
-        $res = $this->runAction($route, $params);
-
-        $response = $this->getResponse();
-        $response->content = $res;
-        return $response;
-    }
-
 
     protected function coreComponents(): array
     {

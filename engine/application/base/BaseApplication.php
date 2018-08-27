@@ -9,9 +9,14 @@ namespace engine\application\base;
 
 
 use engine\application\web\ErrorHandler;
+use engine\application\web\httpStages\TransformRequest;
 use engine\application\web\Request;
 use engine\application\web\Response;
+use engine\application\web\Router;
 use engine\EngineZero;
+use engine\pipeline\HttpPipeLine;
+use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Yaml\Yaml;
 
 abstract class BaseApplication extends Component
 {
@@ -49,12 +54,27 @@ abstract class BaseApplication extends Component
     public function run()
     {
         try {
+            $this->bootstrap();
 
             $request = $this->getRequest();
 
-            $response = $this->handle($request);
+            $res = (new HttpPipeLine())
+                ->send($request)
+                ->then(new TransformRequest())
+                ->run();
 
-            $response->send();
+            $router = $this->getRouter();
+
+            $router->dispatch($request);
+
+            if (!($res instanceof Response)) {
+                $response = $this->getResponse();
+                $response->content = $res;
+            } else {
+                $response = $res;
+            }
+
+            return $response->send();
 
         } catch (\Exception $e) {
             var_dump($e->getMessage());
@@ -75,6 +95,15 @@ abstract class BaseApplication extends Component
     }
 
     /**
+     * @return Router | BaseRouter
+     * @throws \Exception
+     */
+    public function getRouter()
+    {
+        return $this->getComponent('router');
+    }
+
+    /**
      * @return BaseResponse|Response
      * @throws \Exception
      */
@@ -92,12 +121,6 @@ abstract class BaseApplication extends Component
         return $this->getComponent('error');
     }
 
-    /**
-     * @param BaseRequest $request
-     * @return BaseResponse
-     */
-    abstract public function handle($request);
-
     abstract protected function coreComponents():array;
 
 
@@ -107,6 +130,11 @@ abstract class BaseApplication extends Component
         $res = $controller->runAction($actionID, $params);
 
         return $res;
+    }
+
+    public function bootstrap()
+    {
+
     }
 
     /**
@@ -145,5 +173,16 @@ abstract class BaseApplication extends Component
         foreach ($config as $name => $value) {
             $this->$name = $value;
         }
+    }
+
+    /**
+     * @return void
+     */
+    public function initRouter()
+    {
+        $engine = EngineZero::instance();
+        $routeFile = $engine->parseAlias('@route').'web.php';
+
+        require $routeFile;
     }
 }

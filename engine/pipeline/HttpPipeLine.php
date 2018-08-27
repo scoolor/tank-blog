@@ -9,9 +9,11 @@
 namespace engine\pipeline;
 
 
-class HttpPipeLine implements PipeLineInterface
+use engine\application\base\Component;
+
+class HttpPipeLine extends Component implements PipeLineInterface
 {
-    private $request;
+    public $request;
 
     private $stageList = [];
 
@@ -24,6 +26,7 @@ class HttpPipeLine implements PipeLineInterface
 
     public function then(StageInterface $stage)
     {
+        $stage->setPipeLine($this);
         array_push($this->stageList, $stage);
 
         return $this;
@@ -33,6 +36,9 @@ class HttpPipeLine implements PipeLineInterface
     {
         foreach ($this->stageList as $eachStage) {
             $eachStage->handle();
+            if ($eachStage->stopFlag) {
+                break;
+            }
         }
     }
 }

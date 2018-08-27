@@ -1,0 +1,9 @@
+controllerNameSpace : \admin\controllers
+alias : []
+components :
+  request :
+    class : \engine\application\web\Request
+  response :
+    class : \engine\application\web\Response
+  error :
+    class : \engine\application\web\ErrorHandler

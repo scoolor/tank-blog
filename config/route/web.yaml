@@ -1,0 +1,5 @@
+welcome :
+  path : /welcome
+  method : get
+  controller : WelcomeController
+  action : actionIndex

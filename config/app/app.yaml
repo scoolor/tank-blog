@@ -1,0 +1,12 @@
+controllerNameSpace : \app\controllers
+alias : []
+components :
+  request :
+    class : \engine\application\web\Request
+  router :
+    class : \engine\application\web\Router
+    routeFile : \@route
+  response :
+    class : \engine\application\web\Response
+  error :
+    class : \engine\application\web\ErrorHandler

@@ -2,7 +2,8 @@
 
 include_once dirname(dirname(__DIR__)) . '/config/app/bootstrap.php';
 
-$config = require_once dirname(dirname(__DIR__)) . '/config/app/app.php';
+$configFilePath = dirname(dirname(__DIR__)) . '/config/app/app.yaml';
+$config = \Symfony\Component\Yaml\Yaml::parseFile($configFilePath);
 
 $engine = \engine\EngineZero::instance();
 

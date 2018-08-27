@@ -11,5 +11,6 @@ namespace engine\pipeline;
 
 interface StageInterface
 {
+    public function setPipeLine(PipeLineInterface $pipeLine);
     public function handle();
 }
