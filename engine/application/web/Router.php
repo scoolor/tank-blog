@@ -14,6 +14,10 @@ use engine\EngineZero;
 
 class Router extends BaseRouter
 {
+    /**
+     * @param \engine\application\base\BaseRequest|Request $request
+     * @throws \Exception
+     */
     public function dispatch($request)
     {
         $method = strtolower($request->requestMethod());
@@ -21,7 +25,10 @@ class Router extends BaseRouter
         if (isset($this->routeMap[$method][$uri])) {
             $info = $this->routeMap[$method][$uri];
             $engine = EngineZero::instance();
-            var_dump($info);
+            $controllerName = $info['controller'];
+            $actionName = $info['action'];
+            $controller = $engine->generateObject($controllerName);
+            return $controller->$actionName();
         }
     }
 }

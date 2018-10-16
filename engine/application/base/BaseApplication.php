@@ -63,11 +63,11 @@ abstract class BaseApplication extends Component
                 ->then(new TransformRequest())
                 ->run();
 
-            $router = $this->getRouter();
-
-            $router->dispatch($request);
-
             if (!($res instanceof Response)) {
+                if ($res === true) {
+                    $router = $this->getRouter();
+                    $res = $router->dispatch($request);
+                }
                 $response = $this->getResponse();
                 $response->content = $res;
             } else {
@@ -77,13 +77,17 @@ abstract class BaseApplication extends Component
             return $response->send();
 
         } catch (\Exception $e) {
+            echo "<pre>";
             var_dump($e->getMessage());
+            var_dump($e->getTraceAsString());
         }
 
     }
 
     public function init()
-    {}
+    {
+
+    }
 
     /**
      * @return BaseRequest|Request

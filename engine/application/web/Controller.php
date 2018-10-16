@@ -20,6 +20,8 @@ class Controller extends BaseController
 {
     public $layout = 'layout/index';
 
+    public $viewPath = '@view';
+
     /**
      * @param $view
      * @param array $params
@@ -41,9 +43,7 @@ class Controller extends BaseController
     protected function getViewFilePath($view)
     {
         $engine = EngineZero::instance();
-
-        $viewPath = $engine->parseAlias('@view');
-
+        $viewPath = rtrim($engine->parseAlias($this->viewPath), '/');
         $dirName = '';
 
         if (strpos($view, '/') === false) {
@@ -54,7 +54,7 @@ class Controller extends BaseController
             $dirName = EngineZero::formatToSnake($name).'/';
         }
 
-        $filePath = $viewPath.$dirName.$view.'.php';
+        $filePath = $viewPath.'/'.$dirName.$view.'.php';
         return $filePath;
     }
 
@@ -75,9 +75,10 @@ class Controller extends BaseController
     {
         $engine = EngineZero::instance();
 
-        $viewPath = $engine->parseAlias('@view');
+        $viewPath = rtrim($engine->parseAlias($this->viewPath), '/');
 
-        $layoutFile = $viewPath.$this->layout.'.php';
+        $layoutFile = $viewPath.'/'.$this->layout.'.php';
+
         return $this->renderPhpFile($layoutFile, ['content' => $content, 'domain' => 'http://www.tankblog.com']);
     }
 

@@ -1,5 +1,11 @@
 welcome :
   path : /welcome
   method : get
-  controller : WelcomeController
-  action : actionIndex
+  controller : app\controllers\WelcomeController
+  action : index
+
+adminIndex :
+  path : /admin/welcome
+  method : get
+  controller : \admin\controllers\WelcomeController
+  action : index

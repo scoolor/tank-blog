@@ -12,4 +12,5 @@ use engine\application\web\Controller;
 
 class BaseController extends Controller
 {
+    public $viewPath = '@admin/views';
 }

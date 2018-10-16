@@ -3,11 +3,9 @@
 namespace admin\controllers;
 
 
-use engine\application\web\Controller;
-
-class WelcomeController extends Controller
+class WelcomeController extends BaseController
 {
-    public function actionIndex()
+    public function index()
     {
         header("Access-Control-Allow-Origin:*");
         return $this->view('index');

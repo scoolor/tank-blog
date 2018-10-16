@@ -17,6 +17,8 @@ class HttpPipeLine extends Component implements PipeLineInterface
 
     private $stageList = [];
 
+    protected $output = null;
+
     public function send($request)
     {
         $this->request = $request;
@@ -32,6 +34,12 @@ class HttpPipeLine extends Component implements PipeLineInterface
         return $this;
     }
 
+    public function setOutput($outputValue)
+    {
+        $this->output = $outputValue;
+    }
+
+
     public function run()
     {
         foreach ($this->stageList as $eachStage) {
@@ -39,6 +47,12 @@ class HttpPipeLine extends Component implements PipeLineInterface
             if ($eachStage->stopFlag) {
                 break;
             }
+        }
+
+        if (!is_null($this->output)) {
+            return $this->output;
+        } else {
+            return true;
         }
     }
 }

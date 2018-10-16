@@ -1,4 +1,5 @@
 <?php
+findNameByPattern("app", "css","/static/css/");exit;
 ?>
 <!doctype html>
 <html class="no-js fixed-layout">
@@ -9,6 +10,9 @@
     <link href=<?php echo findNameByPattern("app", "css","./static/css/")?> rel=stylesheet>
 </head>
 <body>
+<?php
+    echo $content;
+?>
     <div id="app"></div>
 </body>
 </html>

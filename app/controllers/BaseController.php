@@ -12,7 +12,7 @@ use engine\application\web\Controller;
 
 class BaseController extends Controller
 {
-    public function actionIndex()
+    public function index()
     {
         var_dump('Hello My Framework!');
     }

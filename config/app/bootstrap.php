@@ -17,6 +17,7 @@ $engine->registerAlias([
     '@app'  => dirname(dirname(__DIR__)).'/app',
     '@view' => dirname(dirname(__DIR__)).'/app/views',
     '@route' => dirname(__DIR__).'/route',
+    '@admin' => dirname(dirname(__DIR__)).'/admin',
 ]);
 
 $engine->set('app', [

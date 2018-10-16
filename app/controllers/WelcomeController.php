@@ -12,7 +12,7 @@ use engine\application\web\Controller;
 
 class WelcomeController extends Controller
 {
-    public function actionIndex()
+    public function index()
     {
         echo "Welcome to Tank Blog!";
     }

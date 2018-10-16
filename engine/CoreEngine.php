@@ -77,10 +77,9 @@ class CoreEngine extends BaseObject
         if (!isset($this->aliasMap[$aliasRoot])) {
             return false;
         }
-
         foreach ($this->aliasMap[$aliasRoot] as $key => $path) {
             if (strpos($aliasKey.'/', $key.'/') === 0) {
-                return $path.'/'.substr($aliasKey, strlen($aliasRoot));
+                return $path.'/'.ltrim(substr($aliasKey, strlen($aliasRoot)), '/');
             }
         }
         return false;
@@ -93,9 +92,7 @@ class CoreEngine extends BaseObject
         $classFile = $className;
 
         if (strpos($className, '\\') !== false) {
-
             $classFile = $this->parseAlias($this->aliasFlag.str_replace('\\', '/', $className).'.php');
-
             if ($classFile === false || !is_file($classFile)) {
                 return;
             }
