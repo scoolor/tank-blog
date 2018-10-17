@@ -9,3 +9,9 @@ adminIndex :
   method : get
   controller : \admin\controllers\WelcomeController
   action : index
+
+adminLogin :
+  path : api/login
+  method : get
+  controller : \admin\controllers\UserAccountController
+  action : index

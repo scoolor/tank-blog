@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col :span="6" :offset="9" style="margin-top:15vh;">
+    <el-col :span="8" :offset="8" style="margin-top:15vh;">
       <el-card shadow="always">
         <div slot="header" class="login-header-box">
           <span class="header-title">Blog管理系统</span>
@@ -87,6 +87,7 @@ export default {
               this.$router.push('home')
             })
             .catch((error) => {
+              this.$message.error("Error")
               this.$message.error(error.message)
             })
         } else {
