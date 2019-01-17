@@ -1,3 +1,9 @@
+home :
+  path : /
+  method : get
+  controller : app\controllers\WelcomeController
+  action : index
+
 welcome :
   path : /welcome
   method : get

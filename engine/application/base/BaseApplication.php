@@ -68,6 +68,7 @@ abstract class BaseApplication extends Component
                     $router = $this->getRouter();
                     $res = $router->dispatch($request);
                 }
+
                 $response = $this->getResponse();
                 $response->content = $res;
             } else {
@@ -76,7 +77,7 @@ abstract class BaseApplication extends Component
 
             return $response->send();
 
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             echo "<pre>";
             var_dump($e->getMessage());
             var_dump($e->getTraceAsString());

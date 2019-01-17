@@ -1,7 +1,13 @@
 <?php
 
-//传统mvc模式
-include './app/index.php';
+include_once dirname(__DIR__) . '/config/app/bootstrap.php';
 
-//前后端分离
-//include './app/index.html';
+$configFilePath = dirname(__DIR__) . '/config/app/app.yaml';
+
+$config = \Symfony\Component\Yaml\Yaml::parseFile($configFilePath);
+
+$engine = \engine\EngineZero::instance();
+
+$application = $engine->get('app', [$config]);
+
+$application->run();

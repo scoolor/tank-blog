@@ -17,6 +17,7 @@ class Router extends BaseRouter
     /**
      * @param \engine\application\base\BaseRequest|Request $request
      * @throws \Exception
+     * @return mixed
      */
     public function dispatch($request)
     {
@@ -29,6 +30,8 @@ class Router extends BaseRouter
             $actionName = $info['action'];
             $controller = $engine->generateObject($controllerName);
             return $controller->$actionName();
+        } else {
+            throw new \Exception('route is wrong!');
         }
     }
 }
