@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <span>
+    <span class="iconfont icon-baocun">
       Hello World
     </span>
   </div>
