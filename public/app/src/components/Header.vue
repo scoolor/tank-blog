@@ -1,41 +1,54 @@
 <template>
-  <el-row :type="flex">
-    <el-col :span="8">
-      <ul class="nav">
-        <li class="nav-list">
-          <span style="font-size:20px;">
+  <el-row>
+    <el-col :span="4">
+      <el-row>
+        <el-col :span="12">
+          <span class="love-code-logo">
             <a href="#">2lovecode</a>
           </span>
-        </li>
-      </ul>
+        </el-col>
+      </el-row>
     </el-col>
-    <el-col :span="8" :push="2">
-      <ul class="nav">
-        <li class="nav-list">
-          <a href="https://github.com/2lovecode">
-            <i class="love-code-link-icon iconfont icon-github-fill"></i>
-          </a>
-        </li>
-        <li class="nav-list">
-          <a href="#">
-            <i class="love-code-link-icon iconfont icon-QQ"></i>
-          </a>
-        </li>
-      </ul>
+
+    <el-col :span="2" :offset="7">
+      <el-row>
+        <el-col :span="8">
+          <span class="love-code-link-icon">
+            <a href="https://github.com/2lovecode">
+              <i class="iconfont icon-github-fill"></i>
+            </a>
+          </span>
+        </el-col>
+        <el-col :span="8">
+          <span class="love-code-link-icon">
+            <a href="#">
+              <i class="iconfont icon-QQ"></i>
+            </a>
+          </span>
+        </el-col>
+        <el-col :span="8">
+          <span class="love-code-link-icon">
+            <a href="#">
+              <i class="iconfont icon-QQ"></i>
+            </a>
+          </span>
+        </el-col>
+      </el-row>
     </el-col>
-    <el-col :span="4" :push="3">
-      <ul class="nav">
-        <li class="nav-list">
+
+    <el-col :span="3" :offset="8">
+      <el-row>
+        <el-col :span="12">
           <a href="#">
             文章
           </a>
-        </li>
-        <li class="nav-list">
+        </el-col>
+        <el-col :span="12">
           <a href="#">
             简介
           </a>
-        </li>
-      </ul>
+        </el-col>
+      </el-row>
     </el-col>
   </el-row>
 </template>
@@ -47,15 +60,22 @@ export default {
 </script>
 
 <style scoped>
-  .nav {
-    list-style-type: none;
+  .el-row {
+    height : 100%;
   }
-  .nav-list {
-    float : left;
-    min-width: 60px;
-    cursor : pointer;
+  .el-col {
+    height : 100%;
+    line-height: 60px;
   }
-  .love-code-link-icon {
-    font-size : 25px;
+  .love-code-logo {
+    font-size: 25px;
+    font-weight: bolder;
+  }
+  .love-code-link-icon a i {
+    font-size : 24px;
+    color : rgba(44, 62, 80, 0.5);
+  }
+  .love-code-link-icon a:hover i {
+    color: rgba(67, 205, 128, 1);
   }
 </style>

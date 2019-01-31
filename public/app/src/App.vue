@@ -33,14 +33,15 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: rgba(44, 62, 80, 1);
+  font-size : 18px;
 }
 .el-header {
   border-bottom : 1px solid rgba(219, 221, 229, 1);
 }
   a {
     text-decoration:none;
-    color: rgba(44,62,80, 1);
+    color: rgba(44, 62, 80, 1);
   }
 a:hover,a:active {
   color: rgba(67, 205, 128, 1);
