@@ -8,12 +8,12 @@
     </el-card>
     <el-card class="box-card" shadow="hover">
       <div v-for="o in 4" :key="o" class="text item">
-        {{'列表内容1 ' + o }}
+        {{'列表内容2 ' + o }}
       </div>
     </el-card>
     <el-card class="box-card" shadow="hover">
       <div v-for="o in 4" :key="o" class="text item">
-        {{'列表内容1 ' + o }}
+        {{'列表内容3 ' + o }}
       </div>
     </el-card>
   </div>
