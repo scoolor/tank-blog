@@ -2,18 +2,18 @@
   <div style="width : 66%; margin : 50px auto;">
     <div class="love-code-article-header">最近文章</div>
     <el-card class="box-card" shadow="hover">
-      <div v-for="o in 4" :key="o" class="text item">
-        {{'列表内容1 ' + o }}
+      <div>
+        第一篇
       </div>
     </el-card>
     <el-card class="box-card" shadow="hover">
-      <div v-for="o in 4" :key="o" class="text item">
-        {{'列表内容2 ' + o }}
+      <div>
+        第二篇
       </div>
     </el-card>
     <el-card class="box-card" shadow="hover">
-      <div v-for="o in 4" :key="o" class="text item">
-        {{'列表内容3 ' + o }}
+      <div>
+        第三篇
       </div>
     </el-card>
   </div>
