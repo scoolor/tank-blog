@@ -28,13 +28,16 @@ export default {
 <style src="../icon-font/iconfont.css"></style>
 
 <style>
+  body {
+    font-size : 62.5%;
+  }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: rgba(44, 62, 80, 1);
-  font-size : 18px;
+  font-size : 1.8em;
 }
 .el-header {
   border-bottom : 1px solid rgba(219, 221, 229, 1);
