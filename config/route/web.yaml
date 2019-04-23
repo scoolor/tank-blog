@@ -21,3 +21,10 @@ adminLogin :
   method : get
   controller : \admin\controllers\UserAccountController
   action : index
+
+getArticleList :
+  path : api/get-article-list
+  method : get
+  controller : app\controllers\ArticleController
+  action : getList
+

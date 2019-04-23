@@ -1,19 +1,9 @@
 <template>
   <div style="width : 66%; margin : 50px auto;">
     <div class="love-code-article-header">最近文章</div>
-    <el-card class="box-card" shadow="hover">
+    <el-card class="box-card" shadow="hover" v-for="(item, index) in list" :key="index">
       <div>
-        第一篇
-      </div>
-    </el-card>
-    <el-card class="box-card" shadow="hover">
-      <div>
-        第二篇
-      </div>
-    </el-card>
-    <el-card class="box-card" shadow="hover">
-      <div>
-        第三篇
+        {{ item.text }}
       </div>
     </el-card>
   </div>
@@ -21,7 +11,16 @@
 
 <script>
 export default {
-  name: 'MyContent'
+  name: 'MyContent',
+  data(){
+    return {
+      list : [
+        {text : 'abc'},
+        {text : 'abcd'},
+        {text : 'abce'}
+      ]
+    };
+  }
 }
 </script>
 
